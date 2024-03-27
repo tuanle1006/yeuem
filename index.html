@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ESP32 Control Panel</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">ESP32 Control</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Control Panel <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);" onclick="confirmLogout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="content container">
+            <div class="row">
+                <div class="col-10 video-section">
+                    <video id="videoPlayer" controls></video>
+                    <div class="quality-resolution">
+                        <div class="form-group">
+                            <label for="qualitySlider">Quality (10-63):</label>
+                            <input type="number" id="qualitySlider" min="10" max="63" value="10" step="1" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="resolutionSelect">Resolution:</label>
+                            <select id="resolutionSelect" class="form-control">
+                                <option value="qvga">QVGA</option>
+                                <option value="vga">VGA</option>
+                                <option value="svga">SVGA</option>
+                                <option value="xga">XGA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="controls-section">
+                        <button id="startStreamBtn" class="btn btn-primary">Start Stream</button>
+                        <button id="stopStreamBtn" class="btn btn-secondary">Stop Stream</button>
+                    </div>
+                </div>
+                <div class="col-2 sensor-data">
+                    <div class="card motor-control">
+                        <div class="card-body">
+                            <h3>Robot Control</h3>
+                            <div class="form-group">
+                                <label for="speedInput">Speed & Force:</label>
+                                <input type="number" id="speedInput" value="50" max="200" min="50" step="50"
+                                    class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="angleInput">Angle (0-120°):</label>
+                                <input type="number" id="angleInput" value="0" max="120" min="0" step="1"
+                                    class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="timesInput">Time (0-90):</label>
+                                <input type="number" id="timesInput" value="0" max="90" min="0" step="1"
+                                    class="form-control">
+                            </div>
+                            <button class="btn btn-primary" id="setMotorBtn">Set up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"></script>
+
+    <!-- Include your Firebase.js file -->
+    <script src="controlrobot.js"></script>
+
+    </body>
+</html>
